@@ -1,0 +1,34 @@
+buildscript {
+    // ext - build.gradle에서 사용하는 전역 변수 설정
+    ext {
+        springBootVesrion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVesrion}")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+// io.spring.dependency-management : 스프링 부트의 의존성을 관리해주는 프럴그인
+apply plugin: 'io.spring.dependency-management'
+
+
+group 'com.springboot.toyproject'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+// repositories : 각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지 정함
+repositories {
+    mavenCentral()
+    jcenter()
+}
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
