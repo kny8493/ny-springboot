@@ -22,7 +22,7 @@ public class HelloResponseDtoTest {
 
         // then
         // assertThat : assertj 라는 테스트 검증 라이브러리 메소드
-        // 검증 하고 싶은 대상을 메소드 인자로 ㅂ다음
+        // 검증 하고 싶은 대상을 메소드 인자로 받음
         // 메소드 체이닝이 지원되어 isEqualTo와 같은 메소드를 이어서 사용가능
         assertThat(dto.getName()).isEqualTo(name);
         assertThat(dto.getAmount()).isEqualTo(amount);
