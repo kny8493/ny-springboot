@@ -2,12 +2,16 @@ package com.nayoung.project.springboot.service.posts;
 
 import com.nayoung.project.springboot.domain.posts.Posts;
 import com.nayoung.project.springboot.domain.posts.PostsRepository;
+import com.nayoung.project.springboot.web.dto.PostsListResponseDto;
 import com.nayoung.project.springboot.web.dto.PostsResponseDto;
 import com.nayoung.project.springboot.web.dto.PostsSaveRequestDto;
 import com.nayoung.project.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 // Autowired없이 final이 선언된 모든 필드를 인자값으로 생성하는 생성자를 대신해 줌
 // 사용 이유 : 해당 클래스의 의존성 관계가 변경될 때마다 생성자 코드를 계속해서 수정해야하기 때문에
@@ -35,5 +39,19 @@ public class PostsService {
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id =" + id));
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
+        postsRepository.delete(posts);
     }
 }
