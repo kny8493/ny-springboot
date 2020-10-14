@@ -40,4 +40,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     // mustach
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    // spring security를 위한 의존성 추가
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 }
