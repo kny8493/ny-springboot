@@ -42,4 +42,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-mustache')
     // spring security를 위한 의존성 추가
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    // spring-session-jdbc등록
+    compile('org.springframework.session:spring-session-jdbc')
+    // spring security test등록
+    compile('org.springframework.security:spring-security-test')
 }
